@@ -5,7 +5,7 @@ microservice APIs: wire types, sync conventions, and HTTP clients that anything
 talking TO a WSC API imports. It is deliberately **standard library only**
 (a test parses go.mod and fails on any `require`). Server-side plumbing for
 BUILDING a WSC service lives in the sibling module `wsc-svc-go`
-(`D:\wsc-svc-go`), which depends on this one — never the other way round.
+(`D:\Interop\wsc-api-lib-go`), which depends on this one — never the other way round.
 
 Packages: `orgapi` (the Organization API's list DTOs, ETag helpers, typed
 errors, `Client` for the four sync endpoints) and `orgapi/orgapitest` (an

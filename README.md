@@ -60,7 +60,8 @@ c, _ := orgapi.NewClient(srv.URL, "wscorg_anything")
 
 ## Working on this module and a consumer at once
 
-In the consumer checkout: `go work init . ../wsc-sdk-go` (gitignored there).
+In the consumer checkout: `go work init . ../wsc-api-sdk-go` (gitignored there; the
+folder is `wsc-api-sdk-go`, the module path stays `wsc-sdk-go`).
 Builds and tests then use this checkout; `go mod tidy` does not — it resolves
 the tag named in the consumer's `go.mod`, so tag here (`task release -- vX.Y.Z`)
 before tidying or building an image there. Never retag.
