@@ -1,0 +1,49 @@
+# go-task (https://taskfile.dev). NEVER `make` on this machine: RAD Studio puts
+# Borland MAKE 5.41 on PATH and it cannot parse a GNU Makefile.
+version: '3'
+
+vars:
+  MODULE: github.com/working-systems/wsc-sdk-go
+
+tasks:
+  test:
+    desc: Unit tests (standard library only — nothing to install, nothing to start)
+    cmd: go test ./...
+
+  lint:
+    desc: gofmt (as a check), go vet, staticcheck
+    cmds:
+      - cmd: test -z "$(gofmt -l .)" || (gofmt -l . && exit 1)
+      - go vet ./...
+      - staticcheck ./...
+
+  tidy:
+    cmd: go mod tidy
+
+  tidy-check:
+    desc: Fail if go mod tidy would change anything (this module must stay dependency-free)
+    cmd: go mod tidy -diff
+
+  release:
+    desc: 'Tag and push a release from a clean main: task release -- v0.1.0 (never retag; bump instead)'
+    preconditions:
+      - sh: test -n "{{.CLI_ARGS}}"
+        msg: 'usage: task release -- vX.Y.Z'
+      - sh: test -z "$(git status --porcelain)"
+        msg: 'the working tree has uncommitted changes; commit first'
+      - sh: test "$(git rev-parse --abbrev-ref HEAD)" = "main"
+        msg: 'releases are cut from main'
+      - sh: '! git rev-parse -q --verify "refs/tags/{{.CLI_ARGS}}" >/dev/null 2>&1'
+        msg: 'tag {{.CLI_ARGS}} already exists. Proxies and sum.golang.org pin a tag forever — publish the next version instead'
+    cmds:
+      - task: test
+      - task: lint
+      - task: tidy-check
+      - git tag -a {{.CLI_ARGS}} -m {{.CLI_ARGS}}
+      - git push origin main {{.CLI_ARGS}}
+      - cmd: echo "Warm the module proxy from any consumer checkout:  go list -m {{.MODULE}}@{{.CLI_ARGS}}"
+        silent: true
+
+  proxy-check:
+    desc: Show the versions proxy.golang.org knows about
+    cmd: curl -fsS https://proxy.golang.org/{{.MODULE}}/@v/list

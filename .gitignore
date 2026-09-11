@@ -1,0 +1,19 @@
+# Build output
+/bin/
+coverage.out
+
+# Delve drops these beside main.go when you debug from VS Code
+__debug_bin*
+*.exe
+
+# go-task fingerprint cache
+.task/
+
+# Local Go workspaces are a co-development convenience, never shared: a
+# consumer's go.work points at this checkout by relative path.
+go.work
+go.work.sum
+
+# Editor litter
+*.swp
+*~

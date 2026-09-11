@@ -1,0 +1,13 @@
+{
+  "files.eol": "\n",
+  "[powershell]": {
+    "files.eol": "\r\n"
+  },
+  "go.lintTool": "staticcheck",
+  "gopls": {
+    "formatting.gofumpt": false
+  },
+  "files.exclude": {
+    "**/.task": true
+  }
+}

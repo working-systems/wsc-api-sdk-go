@@ -1,0 +1,11 @@
+# Normalize line endings. Everything the Go toolchain reads is pinned to LF;
+# PowerShell stays CRLF because Windows PowerShell mis-handles some LF-only
+# scripts.
+* text=auto
+*.go   text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.ps1  text eol=crlf
+*.bat  text eol=crlf
