@@ -16,7 +16,7 @@ import (
 const (
 	defaultTimeout   = 30 * time.Second
 	defaultMaxBody   = 64 << 20 // a full list of a few thousand organizations is well under 10 MiB
-	defaultUserAgent = "wsc-sdk-go/orgapi"
+	defaultUserAgent = "wsc-api-sdk-go/orgapi"
 	maxProblemBody   = 64 << 10
 )
 
@@ -37,7 +37,7 @@ type Option func(*Client)
 // still bound each request.
 func WithHTTPClient(h *http.Client) Option { return func(c *Client) { c.http = h } }
 
-// WithUserAgent replaces the default User-Agent (wsc-sdk-go/orgapi); name the
+// WithUserAgent replaces the default User-Agent (wsc-api-sdk-go/orgapi); name the
 // consuming service so the registry's access log says who is polling.
 func WithUserAgent(ua string) Option { return func(c *Client) { c.ua = ua } }
 

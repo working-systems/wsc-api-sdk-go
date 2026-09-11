@@ -23,7 +23,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/working-systems/wsc-sdk-go/orgapi"
+	"github.com/working-systems/wsc-api-sdk-go/orgapi"
 )
 
 // Registry is the fake. Every mutator bumps the registry version exactly the

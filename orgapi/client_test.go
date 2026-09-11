@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/working-systems/wsc-sdk-go/orgapi"
-	"github.com/working-systems/wsc-sdk-go/orgapi/orgapitest"
+	"github.com/working-systems/wsc-api-sdk-go/orgapi"
+	"github.com/working-systems/wsc-api-sdk-go/orgapi/orgapitest"
 )
 
 func newClient(t *testing.T, srv *httptest.Server, key string, opts ...orgapi.Option) *orgapi.Client {
@@ -30,7 +30,7 @@ func TestModuleIsStdlibOnly(t *testing.T) {
 	}
 	for _, line := range strings.Split(string(data), "\n") {
 		if strings.HasPrefix(strings.TrimSpace(line), "require") {
-			t.Fatalf("wsc-sdk-go must stay dependency-free (it is the client SDK, not the service kit); go.mod has: %s", line)
+			t.Fatalf("wsc-api-sdk-go must stay dependency-free (it is the client SDK, not the service kit); go.mod has: %s", line)
 		}
 	}
 }

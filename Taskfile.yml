@@ -3,7 +3,7 @@
 version: '3'
 
 vars:
-  MODULE: github.com/working-systems/wsc-sdk-go
+  MODULE: github.com/working-systems/wsc-api-sdk-go
 
 tasks:
   test:
@@ -41,7 +41,7 @@ tasks:
       - task: tidy-check
       - git tag -a {{.CLI_ARGS}} -m {{.CLI_ARGS}}
       - git push origin main {{.CLI_ARGS}}
-      - cmd: echo "Warm the module proxy from any consumer checkout:  go list -m {{.MODULE}}@{{.CLI_ARGS}}"
+      - cmd: 'echo "Warm the module proxy from any consumer checkout:  go list -m {{.MODULE}}@{{.CLI_ARGS}}"'
         silent: true
 
   proxy-check:

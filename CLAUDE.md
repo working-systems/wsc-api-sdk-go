@@ -1,10 +1,10 @@
 # CLAUDE.md
 
-`github.com/working-systems/wsc-sdk-go` — the **client SDK** for WSC's Go
+`github.com/working-systems/wsc-api-sdk-go` — the **client SDK** for WSC's Go
 microservice APIs: wire types, sync conventions, and HTTP clients that anything
 talking TO a WSC API imports. It is deliberately **standard library only**
 (a test parses go.mod and fails on any `require`). Server-side plumbing for
-BUILDING a WSC service lives in the sibling module `wsc-svc-go`
+BUILDING a WSC service lives in the sibling module `wsc-api-lib-go`
 (`D:\Interop\wsc-api-lib-go`), which depends on this one — never the other way round.
 
 Packages: `orgapi` (the Organization API's list DTOs, ETag helpers, typed
