@@ -274,12 +274,12 @@ func TestRequestShape(t *testing.T) {
 		_, _ = w.Write([]byte(`{"schema":"v1","version":1}`))
 	}))
 	defer srv.Close()
-	c := newClient(t, srv, "wscorg_k", orgapi.WithUserAgent("assetlib-api/2.0.0.0"))
+	c := newClient(t, srv, "wscorg_k", orgapi.WithUserAgent("dataforge-api/2.0.0.0"))
 	if _, err := c.Version(context.Background(), "1"); err != nil {
 		t.Fatal(err)
 	}
 	if got.URL.Path != orgapi.PathOrganizationsVersion || got.Header.Get(orgapi.HeaderAPIKey) != "wscorg_k" ||
-		got.Header.Get("If-None-Match") != "1" || got.Header.Get("User-Agent") != "assetlib-api/2.0.0.0" ||
+		got.Header.Get("If-None-Match") != "1" || got.Header.Get("User-Agent") != "dataforge-api/2.0.0.0" ||
 		got.Header.Get("Accept") != "application/json" {
 		t.Fatalf("request: %s %v", got.URL, got.Header)
 	}

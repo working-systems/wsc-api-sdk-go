@@ -10,7 +10,7 @@ BUILDING a WSC service lives in the sibling module `wsc-api-lib-go`
 Packages: `orgapi` (the Organization API's list DTOs, ETag helpers, typed
 errors, `Client` for the four sync endpoints) and `orgapi/orgapitest` (an
 in-memory fake registry for consumers' tests). Future WSC API clients land
-here as sibling packages (`assetlibapi`, …).
+here as sibling packages (`dataforgeapi`, …).
 
 ## Commands
 
